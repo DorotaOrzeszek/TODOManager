@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">TODO Manager</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_done">Done</string>
+    <string name="action_settings">Settings</string>
+</resources>
