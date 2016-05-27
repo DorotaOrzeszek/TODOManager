@@ -8,7 +8,6 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     tools:context="com.dorotaorzeszek.todomanager.AddToDoActivity">
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
