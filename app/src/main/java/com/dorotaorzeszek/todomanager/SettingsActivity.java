@@ -134,6 +134,16 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Sha
         // Add 'general' preferences.
         addPreferencesFromResource(R.xml.pref_general);
 
+        // Add 'import'/'export' buttons
+        Preference button = (Preference)findPreference(getString(R.string.export_todos));
+        button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                //code for what you want it to do
+                return true;
+            }
+        });
+
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String syncConnPref = sharedPref.getString(SettingsActivity.KEY_PREF_SYNC_CONN, "");
 
