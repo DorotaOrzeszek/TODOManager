@@ -24,67 +24,14 @@ import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 
 import java.util.List;
+import java.util.prefs.Preferences;
 
 public class SettingsActivity extends AppCompatPreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
-    /**
-     * Determines whether to always show the simplified settings UI, where
-     * settings are presented in a single list. When false, settings are shown
-     * as a master/detail two-pane view on tablets. When true, a single pane is
-     * shown on tablets.
-     */
-    private static final boolean ALWAYS_SIMPLE_PREFS = true;
-    /**
-     * A preference value change listener that updates the preference's summary
-     * to reflect its new value.
-     */
 
-    public static final String KEY_PREF_SYNC_CONN = "pref_syncConnectionType";
+    // A preference value change listener that updates the preference's summary
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
-                                          String key) {
-        if (key.equals(KEY_PREF_SYNC_CONN)) {
-            Preference connectionPref = findPreference(key);
-            // Set summary to be the user-description for the selected value
-            connectionPref.setSummary(sharedPreferences.getString(key, ""));
-        }
-    }
-
-/*
-    private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
-        @Override
-        public boolean onPreferenceChange(Preference preference, Object value) {
-            String stringValue = value.toString();
-
-            if (preference instanceof ListPreference) {
-                // For list preferences, look up the correct display value in
-                // the preference's 'entries' list.
-                ListPreference listPreference = (ListPreference) preference;
-                int index = listPreference.findIndexOfValue(stringValue);
-
-                // Set the summary to reflect the new value.
-                preference.setSummary(
-                        index >= 0
-                                ? listPreference.getEntries()[index]
-                                : null);
-
-            } else {
-                // For all other preferences, set the summary to the value's
-                // simple string representation.
-                preference.setSummary(stringValue);
-            }
-            return true;
-        }
-    };
-*/
-    /**
-     * Determines whether the simplified settings UI should be shown. This is
-     * true if this is forced via {@link #ALWAYS_SIMPLE_PREFS}, or the device
-     * doesn't have newer APIs like {@link PreferenceFragment}, or the device
-     * doesn't have an extra-large screen. In these cases, a single-pane
-     * "simplified" settings UI should be shown.
-     */
-    private static boolean isSimplePreferences(Context context) {
-        return ALWAYS_SIMPLE_PREFS;
     }
 
     @Override
@@ -93,9 +40,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Sha
         setupActionBar();
     }
 
-    /**
-     * Set up the {@link android.app.ActionBar}, if the API is available.
-     */
+    // Set up the ActionBar
     private void setupActionBar() {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -135,8 +80,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Sha
         addPreferencesFromResource(R.xml.pref_general);
 
         // Add 'import'/'export' buttons
-        Preference button = (Preference)findPreference(getString(R.string.export_todos));
-        button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        Preference importButton = (Preference) findPreference(getString(R.string.import_todos));
+        importButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 //code for what you want it to do
@@ -144,22 +89,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Sha
             }
         });
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        String syncConnPref = sharedPref.getString(SettingsActivity.KEY_PREF_SYNC_CONN, "");
-
-        SharedPreferences.OnSharedPreferenceChangeListener listener =
-                new SharedPreferences.OnSharedPreferenceChangeListener() {
-                    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
-                                                          String key) {
-                        if (key.equals(KEY_PREF_SYNC_CONN)) {
-                            Preference connectionPref = findPreference(key);
-                            // Set summary to be the user-description for the selected value
-                            connectionPref.setSummary(sharedPreferences.getString(key, ""));
-                        }
-                    }
-                };
-        sharedPref.registerOnSharedPreferenceChangeListener(listener);
-
+        Preference exportButton = (Preference) findPreference(getString(R.string.export_todos));
+        exportButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                //code for what you want it to do
+                return true;
+            }
+        });
     }
 
 }

@@ -22,6 +22,10 @@
         android:summary="@string/pref_description_show_done"
         android:title="@string/pref_title_show_done" />
 
+    <Preference android:title="@string/pref_title_import_todos"
+        android:key="@string/import_todos"
+        android:summary="@string/pref_description_import_todos"/>
+
     <Preference android:title="@string/pref_title_export_todos"
         android:key="@string/export_todos"
         android:summary="@string/pref_description_export_todos"/>
