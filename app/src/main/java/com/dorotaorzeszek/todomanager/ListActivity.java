@@ -11,9 +11,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class ListActivity extends AppCompatActivity {
+
+    ListView lv;
+    Model[] modelItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,17 @@ public class ListActivity extends AppCompatActivity {
                 context.startActivity(intent);
             }
         });
+
+        lv = (ListView) findViewById(R.id.listView);
+        modelItems = new Model[5];
+        modelItems[0] = new Model("Go to the gym", 0);
+        modelItems[1] = new Model("Buy apples and oranges", 0);
+        modelItems[2] = new Model("Work on app", 0);
+        modelItems[3] = new Model("Pay bills", 0);
+        modelItems[4] = new Model("Walk the dog", 0);
+        CustomAdapter adapter = new CustomAdapter(this, modelItems);
+        lv.setAdapter(adapter);
+
     }
 
     @Override
@@ -74,4 +89,5 @@ public class ListActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
         */
     }
+
 }
