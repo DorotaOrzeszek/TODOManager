@@ -1,4 +1,4 @@
-package com.dorotaorzeszek.todomanager;
+package com.dorotaorzeszek.todomanager.backend;
 
 import java.util.Date;
 

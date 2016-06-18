@@ -13,14 +13,16 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-public class CustomAdapter extends ArrayAdapter<Model> {
-    Model[] modelItems = null;
+import com.dorotaorzeszek.todomanager.uimodel.ToDoListEntry;
+
+public class ToDoListAdapter extends ArrayAdapter<ToDoListEntry> {
+    ToDoListEntry[] toDoEntries = null;
     Context context;
 
-    public CustomAdapter(Context context, Model[] resource) {
-        super(context,R.layout.row,resource);
+    public ToDoListAdapter(Context context, ToDoListEntry[] resource) {
+        super(context,R.layout.row, resource);
         this.context = context;
-        this.modelItems = resource;
+        this.toDoEntries = resource;
         }
 
     @Override
@@ -29,12 +31,8 @@ public class CustomAdapter extends ArrayAdapter<Model> {
         convertView = inflater.inflate(R.layout.row, parent, false);
         TextView name = (TextView) convertView.findViewById(R.id.textView1);
         CheckBox cb = (CheckBox) convertView.findViewById(R.id.checkBox1);
-        name.setText(modelItems[position].getName());
-        if (modelItems[position].getValue() == 1) {
-            cb.setChecked(true);
-        } else {
-            cb.setChecked(false);
-        }
+        name.setText(toDoEntries[position].getName());
+        cb.setChecked(toDoEntries[position].isChecked());
         return convertView;
     }
 }

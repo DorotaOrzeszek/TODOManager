@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -14,10 +13,12 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.dorotaorzeszek.todomanager.uimodel.ToDoListEntry;
+
 public class ListActivity extends AppCompatActivity {
 
     ListView lv;
-    Model[] modelItems;
+    ToDoListEntry[] toDoEntries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,26 +42,26 @@ public class ListActivity extends AppCompatActivity {
         });
 
         lv = (ListView) findViewById(R.id.listView);
-        modelItems = new Model[15];
-        modelItems[0] = new Model("Go to the gym", 0);
-        modelItems[1] = new Model("Buy apples and oranges", 0);
-        modelItems[2] = new Model("Work on app", 0);
-        modelItems[3] = new Model("Pay bills", 0);
-        modelItems[4] = new Model("Walk the dog", 0);
-        modelItems[5] = new Model("Meet Mike", 0);
-        modelItems[6] = new Model("Call Mum", 0);
-        modelItems[7] = new Model("Search for shoes online", 0);
-        modelItems[8] = new Model("Study for the exam", 0);
-        modelItems[9] = new Model("Take out the trash", 0);
-        modelItems[10] = new Model("Return a book to the library", 0);
-        modelItems[11] = new Model("Read the article I was recommended", 0);
-        modelItems[12] = new Model("Find the big envelope I got from the bank last week and misplaced", 0);
-        modelItems[13] = new Model("Do the dishes", 0);
-        modelItems[14] = new Model("Call the plumber", 0);
+        toDoEntries = new ToDoListEntry[15];
+        toDoEntries[0] = new ToDoListEntry("Go to the gym", false);
+        toDoEntries[1] = new ToDoListEntry("Buy apples and oranges", false);
+        toDoEntries[2] = new ToDoListEntry("Work on app", false);
+        toDoEntries[3] = new ToDoListEntry("Pay bills", false);
+        toDoEntries[4] = new ToDoListEntry("Walk the dog", false);
+        toDoEntries[5] = new ToDoListEntry("Meet Mike", false);
+        toDoEntries[6] = new ToDoListEntry("Call Mum", false);
+        toDoEntries[7] = new ToDoListEntry("Search for shoes online", false);
+        toDoEntries[8] = new ToDoListEntry("Study for the exam", false);
+        toDoEntries[9] = new ToDoListEntry("Take out the trash", false);
+        toDoEntries[10] = new ToDoListEntry("Return a book to the library", false);
+        toDoEntries[11] = new ToDoListEntry("Read the article I was recommended", false);
+        toDoEntries[12] = new ToDoListEntry("Find the big envelope I got from the bank last week and misplaced", false);
+        toDoEntries[13] = new ToDoListEntry("Do the dishes", false);
+        toDoEntries[14] = new ToDoListEntry("Call the plumber", false);
 
 
 
-        CustomAdapter adapter = new CustomAdapter(this, modelItems);
+        ToDoListAdapter adapter = new ToDoListAdapter(this, toDoEntries);
         lv.setAdapter(adapter);
 
     }
