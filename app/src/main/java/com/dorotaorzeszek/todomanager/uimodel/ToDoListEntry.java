@@ -19,4 +19,7 @@ public class ToDoListEntry {
         return this.checked;
     }
 
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
 }

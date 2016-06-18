@@ -15,10 +15,13 @@ import android.widget.Toast;
 
 import com.dorotaorzeszek.todomanager.uimodel.ToDoListEntry;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ListActivity extends AppCompatActivity {
 
     ListView lv;
-    ToDoListEntry[] toDoEntries;
+    List<ToDoListEntry> toDoEntries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,22 +45,22 @@ public class ListActivity extends AppCompatActivity {
         });
 
         lv = (ListView) findViewById(R.id.listView);
-        toDoEntries = new ToDoListEntry[15];
-        toDoEntries[0] = new ToDoListEntry("Go to the gym", false);
-        toDoEntries[1] = new ToDoListEntry("Buy apples and oranges", false);
-        toDoEntries[2] = new ToDoListEntry("Work on app", false);
-        toDoEntries[3] = new ToDoListEntry("Pay bills", false);
-        toDoEntries[4] = new ToDoListEntry("Walk the dog", false);
-        toDoEntries[5] = new ToDoListEntry("Meet Mike", false);
-        toDoEntries[6] = new ToDoListEntry("Call Mum", false);
-        toDoEntries[7] = new ToDoListEntry("Search for shoes online", false);
-        toDoEntries[8] = new ToDoListEntry("Study for the exam", false);
-        toDoEntries[9] = new ToDoListEntry("Take out the trash", false);
-        toDoEntries[10] = new ToDoListEntry("Return a book to the library", false);
-        toDoEntries[11] = new ToDoListEntry("Read the article I was recommended", false);
-        toDoEntries[12] = new ToDoListEntry("Find the big envelope I got from the bank last week and misplaced", false);
-        toDoEntries[13] = new ToDoListEntry("Do the dishes", false);
-        toDoEntries[14] = new ToDoListEntry("Call the plumber", false);
+        toDoEntries = new ArrayList<ToDoListEntry>();
+        toDoEntries.add(new ToDoListEntry("Go to the gym", false));
+        toDoEntries.add(new ToDoListEntry("Buy apples and oranges", false));
+        toDoEntries.add(new ToDoListEntry("Work on app", false));
+        toDoEntries.add(new ToDoListEntry("Pay bills", false));
+        toDoEntries.add(new ToDoListEntry("Walk the dog", false));
+        toDoEntries.add(new ToDoListEntry("Meet Mike", false));
+        toDoEntries.add(new ToDoListEntry("Call Mum", false));
+        toDoEntries.add(new ToDoListEntry("Search for shoes online", false));
+        toDoEntries.add(new ToDoListEntry("Study for the exam", false));
+        toDoEntries.add(new ToDoListEntry("Take out the trash", false));
+        toDoEntries.add(new ToDoListEntry("Return a book to the library", false));
+        toDoEntries.add(new ToDoListEntry("Read the article I was recommended", false));
+        toDoEntries.add(new ToDoListEntry("Find the big envelope I got from the bank last week and misplaced", false));
+        toDoEntries.add(new ToDoListEntry("Do the dishes", false));
+        toDoEntries.add(new ToDoListEntry("Call the plumber", false));
 
 
 
@@ -84,7 +87,13 @@ public class ListActivity extends AppCompatActivity {
 
         switch(id) {
             case R.id.action_done:
-                toast.show();
+                String toastString = "";
+                for (ToDoListEntry entry : toDoEntries) {
+                    if (entry.isChecked()) {
+                        toastString += entry.getName() + ", ";
+                    }
+                }
+                Toast.makeText(getApplicationContext(), toastString, Toast.LENGTH_LONG).show();
                 return true;
             case R.id.action_delete:
                 toast.show();
