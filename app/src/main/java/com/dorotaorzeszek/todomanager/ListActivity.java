@@ -41,12 +41,25 @@ public class ListActivity extends AppCompatActivity {
         });
 
         lv = (ListView) findViewById(R.id.listView);
-        modelItems = new Model[5];
+        modelItems = new Model[15];
         modelItems[0] = new Model("Go to the gym", 0);
         modelItems[1] = new Model("Buy apples and oranges", 0);
         modelItems[2] = new Model("Work on app", 0);
         modelItems[3] = new Model("Pay bills", 0);
         modelItems[4] = new Model("Walk the dog", 0);
+        modelItems[5] = new Model("Meet Mike", 0);
+        modelItems[6] = new Model("Call Mum", 0);
+        modelItems[7] = new Model("Search for shoes online", 0);
+        modelItems[8] = new Model("Study for the exam", 0);
+        modelItems[9] = new Model("Take out the trash", 0);
+        modelItems[10] = new Model("Return a book to the library", 0);
+        modelItems[11] = new Model("Read the article I was recommended", 0);
+        modelItems[12] = new Model("Find the big envelope I got from the bank last week and misplaced", 0);
+        modelItems[13] = new Model("Do the dishes", 0);
+        modelItems[14] = new Model("Call the plumber", 0);
+
+
+
         CustomAdapter adapter = new CustomAdapter(this, modelItems);
         lv.setAdapter(adapter);
 
